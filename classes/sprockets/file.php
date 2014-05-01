@@ -55,6 +55,13 @@ class Sprockets_File
 	public function save_file($file_path, $source)
 	{
 		$path = trim($file_path);
+		
+		# Destination could be in a subdirectory that doesn't exist yet
+		$destination_basedir = dirname($path);
+
+		! is_dir($path)
+			and mkdir($path, 0777, true);
+		
 		$successful = (file_put_contents($path, $source) !== false);
 
 		if ( !$successful ) {
@@ -105,7 +112,7 @@ class Sprockets_File
 		$destination_basedir = dirname($destination);
 
 		! is_dir($destination_basedir)
-			and mkdir($destination_basedir);
+			and mkdir($destination_basedir, 0777, true);
 
 		# Carry out the file operations
 		try {
