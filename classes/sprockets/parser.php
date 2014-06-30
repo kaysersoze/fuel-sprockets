@@ -82,7 +82,7 @@ class Sprockets_Parser extends Sprockets_Cache
 	 * @param string asset_dir
 	 * @return array sprockets_include_tag
 	 */
-	public function parse($file, $asset_dir, $no_tag = false) {
+	public function parse($file, $asset_dir, $no_tag = false, $output_override_dir = null) {
 
 		$this->no_tag 					= $no_tag;
 		$this->requested_bundle = $this->asset_root_dir . $asset_dir . $file;
@@ -98,7 +98,7 @@ class Sprockets_Parser extends Sprockets_Cache
 
 		$file_list 	= array_merge(array_unique($subfiles), array($this->requested_bundle));
 
-		return $this->process_files(array_unique($file_list), $file);
+		return $this->process_files(array_unique($file_list), $file, $output_override_dir);
 
 	}
 

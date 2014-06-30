@@ -59,12 +59,11 @@ class Sprockets_File
 		# Destination could be in a subdirectory that doesn't exist yet
 		$destination_basedir = dirname($path);
 
-		! is_dir($path)
-			and mkdir($path, 0777, true);
+		! is_dir($destination_basedir)
+			and mkdir($destination_basedir, 0775, true);
 		
-		$successful = (file_put_contents($path, $source) !== false);
-
-		if ( !$successful ) {
+		if ( ! $save = file_put_contents($path, $source) )
+		{
 			throw new SprocketsFileException("$file_path could not be saved. Do you have write permissions?", 1);
 		}
 	}
@@ -112,7 +111,7 @@ class Sprockets_File
 		$destination_basedir = dirname($destination);
 
 		! is_dir($destination_basedir)
-			and mkdir($destination_basedir, 0777, true);
+			and mkdir($destination_basedir, 0775, true);
 
 		# Carry out the file operations
 		try {

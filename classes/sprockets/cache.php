@@ -35,7 +35,7 @@ class Sprockets_Cache
 	 * @param  string requested_file
 	 * @return string sprockets_include_tag
 	 */
-	protected function process_files($filename_list, $requested_file) {
+	protected function process_files($filename_list, $requested_file, $output_override_dir = null) {
 
 		# Must account for more than one dot in a filename
 		$filename 	= substr($requested_file, 0, strrpos($requested_file, "."));
@@ -89,8 +89,16 @@ class Sprockets_Cache
 		$this->sprockets_filename 			=
 			$filename . "_" . $this->sprockets_file_timestamp . $this->minify_flag . "." . $ext;
 
-		$this->sprockets_file_full_path =
-			$this->asset_compile_dir . $this->file_asset_dir . $this->sprockets_filename;
+		if(!empty($output_override_dir)) 
+		{
+			$this->sprockets_file_full_path =
+				$output_override_dir . $this->sprockets_filename;
+		}
+		else
+		{
+			$this->sprockets_file_full_path =
+				$this->asset_compile_dir . $this->file_asset_dir . $this->sprockets_filename;
+		
 
 		if ( file_exists($this->sprockets_file_full_path) ) {
 			return $this->generate_include_tag();
