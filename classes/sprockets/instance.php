@@ -70,8 +70,8 @@ class Sprockets_Instance
 	 * @param   string filename
 	 * @return  string sprockets_include_css_tag
 	 */
-	public function css($file, $no_tag = false) {
-		return $this->Parser->parse($file, $this->css_dir, $no_tag);
+	public function css($file, $no_tag = false, $output_override_dir = null) {
+		return $this->Parser->parse($file, $this->css_dir, $no_tag, $output_override_dir);
 	}
 }
 

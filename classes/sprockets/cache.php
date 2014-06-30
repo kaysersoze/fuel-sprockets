@@ -98,7 +98,7 @@ class Sprockets_Cache
 		{
 			$this->sprockets_file_full_path =
 				$this->asset_compile_dir . $this->file_asset_dir . $this->sprockets_filename;
-		
+		}
 
 		if ( file_exists($this->sprockets_file_full_path) ) {
 			return $this->generate_include_tag();
