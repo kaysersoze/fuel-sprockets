@@ -64,7 +64,7 @@ class Sprockets_File
 			
 		$successful = (file_put_contents($path, $source) !== false);
 		
-		if ( !$successful ) {
+		if ( !$successful )
 		{
 			throw new SprocketsFileException("$file_path could not be saved. Do you have write permissions?", 1);
 		}
