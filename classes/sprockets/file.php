@@ -60,7 +60,7 @@ class Sprockets_File
 		$destination_basedir = dirname($path);
 
 		! is_dir($destination_basedir)
-			and mkdir($destination_basedir, 0775, true);
+			and mkdir($destination_basedir, 0777, true);
 		
 		if ( ! $save = file_put_contents($path, $source) )
 		{
