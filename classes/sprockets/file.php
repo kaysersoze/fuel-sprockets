@@ -61,8 +61,10 @@ class Sprockets_File
 
 		! is_dir($destination_basedir)
 			and mkdir($destination_basedir, 0777, true);
+			
+		$successful = (file_put_contents($path, $source) !== false);
 		
-		if ( ! $save = file_put_contents($path, $source) )
+		if ( !$successful ) {
 		{
 			throw new SprocketsFileException("$file_path could not be saved. Do you have write permissions?", 1);
 		}
